@@ -1,29 +1,20 @@
-.homepage{
-    display: flex;
-    flex-direction: column;
- //  justify-content: space-evenly;
-    align-content: center;
-    padding: 20px 80px;
-}
 
-
-.directory-menu{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 20px;
-}
 .menu-item{
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
     flex: 1 1 auto;
     padding: 20px;
     margin: 0 7.5px 15px;
     height: 240px;
     border: 1px solid black;
-    min-width: 30px;
+    min-width: 30%;
+    overflow: hidden;
    // background-color: red;
 
+   &.large{
+       height: 380px;
+   }
     &:first-child{
         margin-right: 7.5px;
     }
@@ -31,14 +22,30 @@
         margin-left: 7.5px;
     }
 
+    &:hover{
+        cursor: pointer;
+
+        & .background-image{
+            transform: scale(1.1);
+            transition: transform 6s cubic-bezier(cubic-bezier(0.25, 0.46, 0.45, 0.94));
+        }
+
+        & .content{
+            opacity: .9;;
+        }
+    }
+
     .content{
         display: flex;
         flex-direction: column;
         height: 90px;
+        opacity: 0.7;
         padding: 0 25px;
         align-items: center;
         padding: 20px;
-       // background-color: blue;
+        background: white;
+       background-position: center;
+       background-size: cover;
 
 
     .title{
