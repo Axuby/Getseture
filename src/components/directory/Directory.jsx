@@ -7,17 +7,32 @@ import "./directory.scss"
          super();
 
          this.state = {
-             sections:[]
+             sections:[
+                 {
+                     id:1,
+                     title:"Hats",
+                     imgUrl:"hhh.png",
+                     size:"large",
+                     linkUrl:"Hats"
+                 },
+                 {
+                    id:1,
+                    title:"Womens",
+                    imgUrl:"hhh.png",
+                    size:"small",
+                    linkUrl:""
+                },
+             ]
          }
      }
     render() {
         return (
             <div className="directory-menu">
-                {this.state.sections.map(({id,title,imgUrl,size}) => 
-                   <MenuItem  key={id} title={title} imgUrl={imgUrl}  size={size}/> ) }
+                {this.state.sections.map(({id,...otherSectionValues}) => 
+                   <MenuItem  key={id} {...otherSectionValues}/> ) }
             </div>
         )
     }
-}
+}  
 
 export default Directory
