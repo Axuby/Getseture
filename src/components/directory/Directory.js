@@ -16,12 +16,20 @@ import "./directory.scss"
                      linkUrl:"Hats"
                  },
                  {
-                    id:1,
+                    id:2,
                     title:"Womens",
                     imgUrl:"hhh.png",
                     size:"small",
                     linkUrl:""
                 },
+                {
+                    id:3,
+                    title:"Sneakers",
+                    imgUrl:"hhh.png",
+                    size:"small",
+                    linkUrl:""
+                }
+                
              ]
          }
      }
