@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import "./Header.scss"
+import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/4.3 crown.svg.svg";
 import { auth } from "../../firebase/Firebase.utils";
+import "./Header.scss"
 
 const Header = ({currentUser}) => {
   return (
@@ -28,4 +29,8 @@ const Header = ({currentUser}) => {
   )
 }
 
-export default Header
+const mapStateToProps = state => ({
+  currentUser:state.user.currentUser
+}) //gives access to the state === root reducer=== combineReducer
+
+export default connect(mapStateToProps)(Header)
