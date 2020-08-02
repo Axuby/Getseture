@@ -5,6 +5,7 @@ import {  Route,Switch, Redirect} from "react-router-dom";
 import  ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
 import SignInSignUp from './pages/SignIn-SignUp/SignIn-SignUp';
+import CartPage from "./pages/Cart/CartPage";
 import { auth, createUserProfileDocument } from "./firebase/Firebase.utils"
 import './App.css';
 import { setCurrentUser } from './Redux/User/user.actions';
@@ -60,7 +61,9 @@ render(){
       <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route path="/shop" component={ShopPage}/>
-        <Route exact path="/signIn" render={() => this.props.currentUser 
+        <Route path='/cart' component={CartPage}/>
+        <Route exact path="/signIn" 
+        render={() => this.props.currentUser 
           ? <Redirect to="/"/> 
           : (<SignInSignUp/>) }/>
       </Switch>
