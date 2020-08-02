@@ -7,12 +7,12 @@ import "./Header.scss"
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser,hidden}) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/"> 
          <Logo className="logo"/>
-      </Link>
+       </Link>
        
               <div className="options">
                 <Link className="option" to="/shop">Shop</Link>
@@ -25,15 +25,20 @@ const Header = ({currentUser}) => {
                     </div>
                     : <Link className="option" to="/signIn">Sign In</Link>
                   }
-                    <CartIcon/>
-              </div>
-              <CartDropdown/>
+                    <CartIcon />
+                </div>
+                {
+                    hidden ? null :(<CartDropdown/>)
+                }
+              
     </div>
   )
 }
 
-const mapStateToProps = state => ({
-  currentUser:state.user.currentUser
+const mapStateToProps = ({user:{currentUser} ,cart:{hidden}}) => ({
+  currentUser:currentUser,
+  hidden
+  
 }) //gives access to the state === root reducer=== combineReducer
 
 export default connect(mapStateToProps)(Header)
