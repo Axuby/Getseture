@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Homepage from "./pages/Homepage/Homepage.components";
-import {  Route,Switch} from "react-router-dom";
+import {  Route,Switch, Redirect} from "react-router-dom";
 import  ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
 import SignInSignUp from './pages/SignIn-SignUp/SignIn-SignUp';
@@ -29,20 +29,19 @@ componentDidMount(){
      const userRef = await createUserProfileDocument(userAuth)
 
         userRef.onSnapshot(snapShot =>{
-            this.props.setCurrentUser({
+            setCurrentUser({
               currentUser:{
                 id:snapShot.id,
                 ...snapShot.data()
               }
             }
-            ,()=> {console.log(this.state)}
+            //,()=> {console.log(this.state)}
             )
 
         } )
      }
-     setCurrentUser({
-       currentUser:userAuth //after logging out userAuth = null
-     })
+     setCurrentUser(userAuth)//after logging out userAuth = null
+     
   
 
   })
@@ -61,16 +60,20 @@ render(){
       <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route path="/shop" component={ShopPage}/>
-        <Route path="/signIn" component={SignInSignUp}/>
+        <Route exact path="/signIn" render={() => this.props.currentUser 
+          ? <Redirect to="/"/> 
+          : (<SignInSignUp/>) }/>
       </Switch>
     </div>
   );
 }
 } 
  //App doesnit need the current user again for the header , you get? 
-
+const mapStateToProps = ({user})=> ({
+  currentUser:user.currentUser
+})
 const mapDispatchToProps = (dispatch)=> ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: (user) => dispatch(setCurrentUser(user))
 })
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
