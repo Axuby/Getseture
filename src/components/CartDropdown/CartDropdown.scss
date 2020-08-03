@@ -13,9 +13,10 @@
     background-color: white;
 
     .cart-items{
-        height: 240px;
+        height: 340px;
         display: flex;
         flex-direction: column;
+       // justify-content: flex-end;
         overflow: scroll;
     }
     button{

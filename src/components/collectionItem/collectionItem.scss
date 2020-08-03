@@ -4,7 +4,25 @@
     width: 22%;
     height: 350px;
     align-items: center;
+    position: relative;
 
+    &:hover{
+        .image{
+            opacity: .8 ;
+        }
+        .custom-button{
+            opacity: .85;
+            display: flex;
+        }
+    }
+
+    .custom-button{
+        position: absolute;
+        display: none;
+        top: 255px;
+        width: 80%;
+        opacity: 0.7;
+    }
 
     .image{
         width: 100%;
@@ -16,6 +34,8 @@
 
     .collection-footer{
         height: 5%;
+        position: absolute;
+        bottom: 0px;
         width: 100%;
         display: flex;
         justify-content: space-between;

@@ -12,8 +12,8 @@ const MenuItem = ({title,imgUrl,size,history,linkUrl,match}) => {
       backgroundImage:`url(${imgUrl})`
     }}/>
            <div className="content">
-           <h1 className="title"> {title}</h1>
-  <span className="subtitle">{title}</span>
+            <h1 className="title"> {title}</h1>
+            <span className="subtitle">{title}</span>
        </div>
     </div>
   )
