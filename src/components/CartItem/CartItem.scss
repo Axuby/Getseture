@@ -1,0 +1,17 @@
+.cart-item{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding: 15px;
+    width: 100%;
+
+    .cart-details{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .name{
+        padding: 2px;
+    width: 80%;
+    }
+}
