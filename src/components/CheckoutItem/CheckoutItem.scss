@@ -23,6 +23,17 @@
         width: 23%;
     }
     .quantity{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         padding-left: 20px;
+
+        .arrow{
+            cursor: pointer;
+        }
+
+        .value{
+            margin: 0 10px;
+        }
     }
 }
