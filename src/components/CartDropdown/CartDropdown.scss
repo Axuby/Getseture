@@ -16,8 +16,10 @@
         height: 340px;
         display: flex;
         flex-direction: column;
+        padding: 10px auto;
+        margin: auto;
        // justify-content: flex-end;
-        overflow: scroll;
+        overflow-x: scroll;
     }
     button{
         margin-top: auto;

@@ -16,13 +16,14 @@ switch (action.type) {
         case cartActionTypes.ADD_ITEM:
             return {
                 ...state,
-                cartItems:addItemToCart(state.cartItems,action.payload)
+                cartItems://[...state.cartItems,action.payload]
+                addItemToCart(state.cartItems,action.payload)
             }
         case cartActionTypes.REMOVE_ITEM:
                 return {
                     ...state,
-                    cartItems: removeItemFromCart(state.cartItems,action.payload)
-                   // state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+                    cartItems: removeItemFromCart(state.cartItems.payload,action.payload)
+                //   state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
                     //removeItemFromCart(state.cartItems,action.payload)
                 }
         case cartActionTypes.REDUCE_ITEM:

@@ -10,6 +10,7 @@ import './App.css';
 import { setCurrentUser } from './Redux/User/user.actions';
 import { selectCurrentUser } from './Redux/User/user.selectors';
 import Checkout from './pages/Checkout/Checkout';
+import { createStructuredSelector } from 'reselect';
 
 class App extends React.Component {
   // constructor(props){
@@ -77,8 +78,8 @@ render(){
 //   currentUser:user.currentUser
 // })
 
-const mapStateToProps = (state)=> ({
-  currentUser:selectCurrentUser(state)
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser
 })
 const mapDispatchToProps = (dispatch)=> ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))

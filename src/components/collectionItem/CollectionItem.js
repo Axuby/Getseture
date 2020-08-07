@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { addItem } from "../../Redux/Cart/cart.actions";
 
 const collectionItem = ({item,addItem}) => {
-
+console.log(item)
+console.log(addItem)
   const { name,price,imageUrl} = item
   return (
     <div className="collection-item">
@@ -18,7 +19,7 @@ const collectionItem = ({item,addItem}) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
         </div>
-        <CustomButton inverted onClick={()=>  addItem(item)} >Add to Cart</CustomButton>
+        <CustomButton inverted onClick={()=> addItem(item)} >Add to Cart</CustomButton>
       </div>
     </div>
   )
