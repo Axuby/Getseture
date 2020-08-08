@@ -25,7 +25,7 @@ export const selectCartItemsCount = createSelector(
     
     cartItems =>{
         console.log(cartItems)
-     cartItems.payload.reduce((accumulatedQuantity,cartItem)=>
+     cartItems.reduce((accumulatedQuantity,cartItem)=>
          accumulatedQuantity + cartItem.quantity,0);
     }
 )

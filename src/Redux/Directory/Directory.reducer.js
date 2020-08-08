@@ -2,24 +2,37 @@ const INITIAL_STATE = {
     sections:[
         {
             id:1,
-            title:"Hats",
+            title:"hats",
             imgUrl:"hhh.png",
             size:"large",
-            linkUrl:"Hats"
+            linkUrl:"shop/hats"
+        },    {
+            id:2,
+            title:"jackets",
+            imgUrl:"hhh.png",
+            size:"small",
+            linkUrl:"shop/jackets"
         },
         {
-           id:2,
-           title:"Womens",
+            id:3,
+            title:"sneakers",
+            imgUrl:"hhh.png",
+            size:"small",
+            linkUrl:"shop/sneakers"
+        },
+        {
+           id:4,
+           title:"womens",
            imgUrl:"hhh.png",
            size:"small",
-           linkUrl:""
+           linkUrl:"shop/womens"
        },
        {
            id:3,
-           title:"Sneakers",
+           title:"mens",
            imgUrl:"hhh.png",
            size:"small",
-           linkUrl:""
+           linkUrl:"shop/mens"
        }
        
     ]

@@ -22,7 +22,7 @@ switch (action.type) {
         case cartActionTypes.REMOVE_ITEM:
                 return {
                     ...state,
-                    cartItems: removeItemFromCart(state.cartItems.payload,action.payload)
+                    cartItems: removeItemFromCart(state.cartItems,action.payload)
                 //   state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
                     //removeItemFromCart(state.cartItems,action.payload)
                 }

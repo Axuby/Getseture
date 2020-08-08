@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 
 const CartDropdown = ({cartItems,history, dispatch }) => {
   console.log(cartItems);
+  console.log(history);
   return (
     <div  className='cart-dropdown'>
         <div className="cart-items">
