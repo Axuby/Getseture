@@ -6,12 +6,12 @@ const COLLECTION_ID_MAP = {
     jacket:3,
     womens:4,
     mens:5
-}
+} 
 
-const selectCollection = state => state.shop;
+const selectShop = state => state.shop;
 
 export const selectCollectionShop = createSelector(
-    [selectCollection],shop  => shop.collections
+    [selectShop],shop  => shop.collections
 )
 
 export const  selectCollectionUrl = collectionUrlParam => createSelector(

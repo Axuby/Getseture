@@ -6,8 +6,10 @@ import CollectionPreview from "../CollectionPreview/CollectionPreview";
 import './CollectionsOverview.scss';
 
 const CollectionOverview = ({collections}) => {
+  console.log(collections)
   return (
     <div className='collections-overview'>
+             collection.id,title,routeName,items
         {
                     collections.map(({id,...otherCollectionProps}) =>(
                         <CollectionPreview key={id}  {...otherCollectionProps}/>
@@ -21,5 +23,4 @@ const CollectionOverview = ({collections}) => {
 const mapStateToProps = createStructuredSelector({
     collections: selectCollectionShop
 })
-export default connect(mapStateToProps)(CollectionOverview
-    )
+export default connect(mapStateToProps)(CollectionOverview)

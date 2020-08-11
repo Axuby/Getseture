@@ -1,44 +1,33 @@
 import { createSelector } from "reselect";
 
-const selectCart = (state) => state.cart;
-
-export const selectCartItems = createSelector([selectCart],(cart)=> {
-    return cart.cartItems 
-    }  )
-
-
+const selectCart = (state) => {
+   return  state.cart
+};
 export const  selectCartHidden  = createSelector(
     [selectCart],cart => cart.hidden
 ) 
 
+export const selectCartItems = createSelector(
+    [selectCart],(cart)=> {
+    return cart.cartItems 
+    }  )
+
 
 export const selectCartItemsCount = createSelector(
     [selectCartItems],
-    
-    // function(cartItems) {
-    //     let sum=0;
-    //     cartItems.forEach(cartItem => {
-    //       sum += cartItem.quantity;
-    //     });
-    //     return sum;
-    //   }
-    
-    cartItems =>{
-        console.log(cartItems)
-     cartItems.reduce((accumulatedQuantity,cartItem)=>
-         accumulatedQuantity + cartItem.quantity,0);
+    cartItems => {
+    return cartItems.reduce((accumulatedQuantity,cartItem)=>
+ {  
+     debugger
+    return accumulatedQuantity + cartItem.quantity },0);
     }
 )
 
-// const add = (num)=> {
-//     let i = 0;
-// return num.map()
-// }
-
 export const selectCartTotal = createSelector(
     [selectCartItems],
-    cartItems => { 
-        cartItems.reduce((accumulatedQuantity,cartItem) =>{
+    cartItems => {
+       return  cartItems.reduce((accumulatedQuantity,cartItem) =>{
+           debugger
         return  accumulatedQuantity + cartItem.quantity * cartItem.price
        },0);
     }

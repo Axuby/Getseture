@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Homepage from "./pages/Homepage/Homepage.components";
+import Homepage from "./pages/Homepage/Homepage";
 import {  Route,Switch, Redirect} from "react-router-dom";
 import  ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
@@ -13,42 +13,32 @@ import Checkout from './pages/Checkout/Checkout';
 import { createStructuredSelector } from 'reselect';
 
 class App extends React.Component {
-  // constructor(props){
-  //   super(props)
-
-  //   this.state ={
-  //     currentUser:null
-  //   }
-  // }
-
 
   unsubscribeFromAuth = null;
 
 
-componentDidMount(){
-  const {setCurrentUser} = this.props;
- this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-   if (userAuth) {
-     const userRef = await createUserProfileDocument(userAuth)
+    componentDidMount(){
+      const {setCurrentUser} = this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
 
-        userRef.onSnapshot(snapShot =>{
-            setCurrentUser({
-              currentUser:{
-                id:snapShot.id,
-                ...snapShot.data()
-              }
-            }
-            //,()=> {console.log(this.state)}
-            )
+            userRef.onSnapshot(snapShot =>{
+                setCurrentUser({
+                  currentUser:{
+                    id:snapShot.id,
+                    ...snapShot.data()
+                  }
+                })
 
-        } )
-     }
-     setCurrentUser(userAuth)//after logging out userAuth = null
-     
-  
+            } )
+        }
+        setCurrentUser(userAuth)//after logging out userAuth = null
+        
+      
 
-  })
-}
+      })
+    }
 
 componentWillUnmount(){
   this.unsubscribeFromAuth();
@@ -57,9 +47,7 @@ componentWillUnmount(){
 render(){
   return (
     <div> 
-      <Header 
-      //currentUser={this.state.currentUser}
-      />
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route path="/shop" component={ShopPage}/>

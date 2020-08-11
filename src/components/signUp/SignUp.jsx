@@ -15,34 +15,30 @@ class SignUp extends Component {
             createdAt:new Date()
         }
     }
-handleSubmit = async (e)=>{
-    e.preventDefault()
-    const {displayName,email,password,confirmPassword } = this.state
-    if (password !== confirmPassword) {
-        alert(" Passwords don't match!")
-        return
-    }
+        handleSubmit = async (e)=>{
+                    e.preventDefault()
+                    const {displayName,email,password,confirmPassword } = this.state
+                    if (password !== confirmPassword) {
+                        alert(" Passwords don't match!")
+                        return
+                    }
 
-    try {
-        const {user} = await auth.createUserWithEmailAndPassword(email,password)
+                    try {
+                        const {user} = await auth.createUserWithEmailAndPassword(email,password)
 
-         await createUserProfileDocument(user,{ displayName})
+                        await createUserProfileDocument(user,{ displayName})
 
-         this.setState({
-            displayName:'',
-            email:'',
-            password:'',
-            confirmPassword:''
-    })
+                        this.setState({
+                            displayName:'',
+                            email:'',
+                            password:'',
+                            confirmPassword:''
+                    })
 
-    } catch (error) {
-        console.log(error);
-    }
-
-  
-
-
-}
+                    } catch (error) {
+                        console.log(error);
+                    }
+        }
 handleChange = (e) => {
     const { value, name} = e.target;
 

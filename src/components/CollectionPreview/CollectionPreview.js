@@ -1,7 +1,7 @@
 import React from 'react';
 import CollectionItem from "../collectionItem/CollectionItem";
 import './CollectionPreview.scss'
-
+//id,title,routeName,items
 const CollectionPreview = ({title,items}) => {
   return (
     <div className="collection-preview">

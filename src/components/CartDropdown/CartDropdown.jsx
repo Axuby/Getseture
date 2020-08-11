@@ -10,8 +10,8 @@ import { createStructuredSelector } from 'reselect';
 
 
 const CartDropdown = ({cartItems,history, dispatch }) => {
-  console.log(cartItems);
-  console.log(history);
+      console.log(cartItems);
+      console.log(history);
   return (
     <div  className='cart-dropdown'>
         <div className="cart-items">
@@ -33,8 +33,8 @@ const CartDropdown = ({cartItems,history, dispatch }) => {
 }
 
 
-const mapStateToProps = createStructuredSelector({
-  cartItems:selectCartItems
+const mapStateToProps = state => ({
+  cartItems:selectCartItems(state)
 })
 
 export default withRouter(connect(mapStateToProps)(CartDropdown))
