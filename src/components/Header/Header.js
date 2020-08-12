@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext,useState} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/4.3 crown.svg.svg";
@@ -7,10 +7,16 @@ import { createStructuredSelector } from "reselect";
 import "./Header.scss"
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
-import { selectCartHidden } from '../../Redux/Cart/cart.selectors';
-import { selectCurrentUser } from '../../Redux/User/user.selectors';
+import {CartContext} from "../../provider/cart/Cart.provider";
+import CurrentUserContext from "../../context/currentUser/CurrentUser.context";
 
-const Header = ({currentUser,hidden}) => {
+const Header = () => {
+  const currentUser = useContext(CurrentUserContext)
+  const {hidden} = useContext(CartContext)
+  //const toggleHidden =
+ 
+
+
   return (
     <div className="header">
       <Link className="logo-container" to="/"> 
@@ -27,7 +33,9 @@ const Header = ({currentUser,hidden}) => {
                     </div>
                     : <Link className="option" to="/signIn">Sign In</Link>
                   }
-                    <CartIcon />
+            
+                  <CartIcon />
+              
                 </div>
                 {
                     hidden ? null :(<CartDropdown/>)
@@ -44,11 +52,11 @@ const Header = ({currentUser,hidden}) => {
 // }) //gives access to the state === root reducer=== combineReducer
 
 
-const mapStateToProps = createStructuredSelector({
-  currentUser:selectCurrentUser,
-  hidden:selectCartHidden
+// const mapStateToProps = createStructuredSelector({
+//   currentUser:selectCurrentUser,
+//   hidden:selectCartHidden
   
-}) //gives access to the state === root reducer=== combineReducer
+// }) //gives access to the state === root reducer=== combineReducer
 
 
-export default connect(mapStateToProps)(Header)
+export default Header

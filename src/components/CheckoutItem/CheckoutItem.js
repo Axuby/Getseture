@@ -1,8 +1,13 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './CheckoutItem.scss'
 import { connect } from 'react-redux';
-import { removeItem, addItem, reduceItem, clearItemFromCart } from '../../Redux/Cart/cart.actions';
-const CheckoutItem = ({cartItem,removeItem,reduceItem,addItem }) => {
+import { clearItemFromCart } from '../../Redux/Cart/cart.actions';
+import { CartContext } from "../../provider/cart/Cart.provider";
+
+
+const CheckoutItem = ({cartItem}) => {
+
+    const {removeItem,addItem,clearItemFromCart} = useContext(CartContext)
   const {name,price, quantity,imageUrl} = cartItem
   return (
     <div className='checkout'>
@@ -13,12 +18,12 @@ const CheckoutItem = ({cartItem,removeItem,reduceItem,addItem }) => {
  
         <span className='name'>{name}</span>
         <span className="quantity">
-          <div className="arrow" onClick={()=> removeItem(cartItem)}>&#10094;</div>
+          <div className="arrow" onClick={()=> clearItemFromCart(cartItem)}>&#10094;</div>
           <span className="value">{quantity}</span>
           <div className="arrow" onClick={() => addItem(cartItem)}> &#10095;</div>
           </span>
            <span className="price">{price}</span>
-        <div className="remove-button" onClick={() => clearItemFromCart(cartItem)}>&#10005;</div>
+        <div className="remove-button" onClick={() => removeItem(cartItem)}>&#10005;</div>
       </div>
     </div>
   )
@@ -26,9 +31,6 @@ const CheckoutItem = ({cartItem,removeItem,reduceItem,addItem }) => {
 
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: item => dispatch(removeItem(item)),
-  addItem: item => dispatch(addItem(item)),
-  // reduceItem:item => dispatch(reduceItem(item))
  clearItemFromCart:item =>dispatch(clearItemFromCart(item))
 })
 
