@@ -13,13 +13,15 @@ const config = {
     measurementId: "G-8EYL2WYHQJ"
 }
 
+
+
 export const createUserProfileDocument = async(userAuth,additionalData)=> {
     if(!userAuth) return ;
-    console.log(userAuth)
+    //console.log(userAuth)
 
     const userRef = firestore.doc(`users/${userAuth.uid}`)
     const snapShot = await userRef.get()
-    console.log(snapShot)
+  //  console.log(snapShot)
 
     if (!snapShot.exists) {
         const { displayName,email} = userAuth;
@@ -40,8 +42,34 @@ export const createUserProfileDocument = async(userAuth,additionalData)=> {
     return userRef
 }
 
+
+export const convertCollectionSnapshotToMap = (collections)=>{
+    const transformedCollection = collections.docs.map(doc =>{
+        const {title,items} = doc.data()
+        return {
+            title,
+            items,
+            id:doc.id,
+            routeName:encodeURI(title.toLowerCase())
+        }
+    })
+}
+export const addCollectionAndDocument = async(collectionKey,ObjectToAdd)=>{
+                        console.log(collectionKey)
+                        console.log(ObjectToAdd)
+    const  collectionRef = firestore.collection(collectionKey)
+    console.log(collectionRef)
+    const batch = firestore.batch()
+    ObjectToAdd.forEach(obj=> {
+        const newDocRef = collectionRef.doc()
+        batch.set(newDocRef,obj)
+    }); 
+
+    return await batch.commit()
+
+}
 firebase.initializeApp(config)
-export const auth = firebase.auth();
+export const auth = firebase.auth(); 
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();

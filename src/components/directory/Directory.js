@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import selectSections  from '../../Redux/Directory/Directory.selectors';
 
  const Directory = ({sections}) =>{
+     
         return (
             <div className="directory-menu"> 
         

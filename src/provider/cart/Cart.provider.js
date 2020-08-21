@@ -15,41 +15,37 @@ import CartItem from "../../components/CartItem/CartItem";
 })
 
 const CartProvider =({children}) => {
-    const [hidden, setHidden] = useState(true)
-    const toggleHidden = () => setHidden(!hidden)
-    const [cartItems, setCartItems] = useState([])
-    const [cartItemsCount, setCartItemsCount] = useState(0)
-    const clearItemFromCart = item => setCartItems(removeItemFromCartq(cartItems,item))
-    const addItem = (item)=> setCartItems(addItemToCart(cartItems,item))
-    const removeItem = item => setCartItems(removeItemFromCart(cartItems,item))
-    const cartTotal = (cartItems) => {
-        cartItems.reduce((totalCart,addedCart) => totalCart + addedCart.quantity * addedCart.price,0)
+                    const [hidden, setHidden] = useState(true)
+                    const toggleHidden = () => setHidden(!hidden)
+                    const [cartItems, setCartItems] = useState([])
+                    const [cartItemsCount, setCartItemsCount] = useState(0)
+                    const clearItemFromCart = item => setCartItems(removeItemFromCartq(cartItems,item))
+                    const addItem = (item)=> setCartItems(addItemToCart(cartItems,item))
+                    const removeItem = item => setCartItems(removeItemFromCart(cartItems,item))
+                    const cartTotal = (cartItems) => {}
+
+                // const cartItemsCount = item => 
+
+
+                useEffect(() => {
+                    setCartItemsCount(getItemsCount(cartItems))
                 
-    }
-   // const cartItemsCount = item => 
+                }, [cartItemsCount])
 
-
-   useEffect(() => {
-    setCartItemsCount(getItemsCount(CartItems))
-       return () => {
-          
-       }
-   }, [cartItemsCount])
-
-    return(
-        <CartContext.Provider value={{
-            toggleHidden,
-            hidden,
-            addItem,
-            removeItem,
-            clearItemFromCart,
-            cartItems,
-            cartTotal,
-            cartItemsCount
-        }}>
-            {children}
-        </CartContext.Provider>
-    )
+                    return(
+                        <CartContext.Provider value={{
+                            toggleHidden,
+                            hidden,
+                            addItem,
+                            removeItem,
+                            clearItemFromCart,
+                            cartItems,
+                            cartTotal,
+                            cartItemsCount
+                        }}>
+                            {children}
+                        </CartContext.Provider>
+                    )
 }
 
-export default CartProvider
+export default CartProvider;

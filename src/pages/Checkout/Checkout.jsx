@@ -8,8 +8,8 @@ import StripeButton from '../../components/stripe-button/StripeButton';
 import { CartContext } from "../../provider/cart/Cart.provider";
 
 
-const Checkout = ({cartItemsTotal}) => {
-    const {cartItems} = useContext(CartContext)
+const Checkout = ({cartItems,cartItemsTotal}) => {
+   // const {cartItems} = useContext(CartContext)
 
     console.log(cartItems)
     console.log(cartItemsTotal);;

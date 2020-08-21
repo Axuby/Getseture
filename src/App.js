@@ -5,32 +5,39 @@ import {  Route,Switch, Redirect} from "react-router-dom";
 import  ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
 import SignInSignUp from './pages/SignIn-SignUp/SignIn-SignUp';
-import { auth, createUserProfileDocument } from "./firebase/Firebase.utils"
+import { auth, createUserProfileDocument,addCollectionAndDocument } from "./firebase/Firebase.utils"
 import './App.css';
 import { setCurrentUser } from './Redux/User/user.actions';
 import { selectCurrentUser } from './Redux/User/user.selectors';
 import Checkout from './pages/Checkout/Checkout';
 import { createStructuredSelector } from 'reselect';
 import CurrentUserContext from './context/currentUser/CurrentUser.context';
+import {selectCollectionPreview} from './Redux/Shop/shop.selectors'
+
 
 class App extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      currentUser:null
-    }
-  }
+  // constructor(){
+  //   super()
+  //   this.state={
+  //     currentUser:null
+  //   }
+  // }
   unsubscribeFromAuth = null;
 
+    //const {setCurrentUser,collectionsArray} = this.props
 
     componentDidMount(){
-      //const { currentUser } = this.state;
+      //const {} = this.props
+  const {setCurrentUser,collectionArray} = this.props
+  console.log(collectionArray)
+     // const { currentUser } = this.state;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
 
             userRef.onSnapshot(snapShot =>{
-                this.setState({
+               // this.setState({
+                 setCurrentUser({
                   currentUser:{
                     id:snapShot.id,
                     ...snapShot.data()
@@ -39,9 +46,10 @@ class App extends React.Component {
 
             } )
         }
-        this.setState({currentUser:userAuth})//after logging out userAuth = null
+        setCurrentUser(userAuth)
+        //this.setState({currentUser:userAuth})//after logging out userAuth = null
+      addCollectionAndDocument("collectionDb",collectionArray.map(({title,items})=> ({title,items})))
         
-      
 
       })
     }
@@ -53,14 +61,15 @@ componentWillUnmount(){
 render(){
   return (
     <div> 
-      <CurrentUserContext.Provider value={this.state.currentUser}>
+      <CurrentUserContext.Provider value={this.props.currentUser}>
       <Header />
       </CurrentUserContext.Provider>
       <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route path="/shop" component={ShopPage}/>
         <Route exact path="/signIn" 
-        render={() => this.state.currentUser 
+        render={() => this.props.currentUser
+          //this.state.currentUser 
           ? <Redirect to="/"/> 
           : (<SignInSignUp/>) }/>
           <Route exact path='/checkout' component={Checkout} />
@@ -74,11 +83,12 @@ render(){
 //   currentUser:user.currentUser
 // })
 
-// const mapStateToProps = createStructuredSelector({
-//   currentUser:selectCurrentUser
-// })
-// const mapDispatchToProps = (dispatch)=> ({
-//   setCurrentUser: (user) => dispatch(setCurrentUser(user))
-// })
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser,
+ collectionArray:selectCollectionPreview
+})
+const mapDispatchToProps = (dispatch)=> ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user))
+})
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);

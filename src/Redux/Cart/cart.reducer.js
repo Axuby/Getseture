@@ -17,22 +17,15 @@ switch (action.type) {
             debugger
             return {
                 ...state,
-                cartItems://[...state.cartItems,action.payload]
-                addItemToCart(state.cartItems,action.payload)
+                cartItems:addItemToCart(state.cartItems,action.payload)
             }
         case cartActionTypes.REMOVE_ITEM:
             debugger
                 return {
                     ...state,
                     cartItems: removeItemFromCart(state.cartItems,action.payload)
-                //   state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
-                    //removeItemFromCart(state.cartItems,action.payload)
                 }
-        // case cartActionTypes.REDUCE_ITEM:
-        //     return {
-        //         ...state,
-        //         cartItems: reduceItemFromCart(state.cartItems,action.payload)
-        //     }
+      
             case cartActionTypes.CLEAR_ITEM_FROM_CART:
                 return {
                     ...state,

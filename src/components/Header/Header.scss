@@ -1,6 +1,8 @@
 .header{
     display: flex;
     justify-content: space-between;
+    background-image: linear-gradient(to right, rgba(126,213,111,.9),rgba(40,180,131,.6)),url(../../assets/nat-1.jpg);
+    background-position: center;
     height: 70px;
     width: 100%;
     margin-bottom: 25px;

@@ -57,7 +57,7 @@ const SignUp = ()=> {
   const handleChange = event => {
     const { name, value } = event.target;
 
-    setDetails({ [name]: value });
+    setDetails({...details,[name]: value });
   };
 
  

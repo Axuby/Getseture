@@ -9,10 +9,12 @@ import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import {CartContext} from "../../provider/cart/Cart.provider";
 import CurrentUserContext from "../../context/currentUser/CurrentUser.context";
+import { selectCurrentUser } from '../../Redux/User/user.selectors';
+import { selectCartHidden } from '../../Redux/Cart/cart.selectors';
 
-const Header = () => {
-  const currentUser = useContext(CurrentUserContext)
-  const {hidden} = useContext(CartContext)
+const Header = ({currentUser,hidden}) => {
+  // const currentUser = useContext(CurrentUserContext)
+  // const {hidden} = useContext(CartContext)
   //const toggleHidden =
  
 
@@ -33,9 +35,7 @@ const Header = () => {
                     </div>
                     : <Link className="option" to="/signIn">Sign In</Link>
                   }
-            
                   <CartIcon />
-              
                 </div>
                 {
                     hidden ? null :(<CartDropdown/>)
@@ -52,11 +52,11 @@ const Header = () => {
 // }) //gives access to the state === root reducer=== combineReducer
 
 
-// const mapStateToProps = createStructuredSelector({
-//   currentUser:selectCurrentUser,
-//   hidden:selectCartHidden
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser,
+  hidden:selectCartHidden
   
-// }) //gives access to the state === root reducer=== combineReducer
+}) //gives access to the state === root reducer=== combineReducer
 
 
-export default Header
+export default connect(mapStateToProps)(Header)

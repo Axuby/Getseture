@@ -2,12 +2,16 @@ import React,{useContext} from 'react';
 import './Collection.scss'
 import CollectionItem from '../../components/collectionItem/CollectionItem';
 import CollectionsContext from '../../context/collection/Collections.context';
+import { connect } from 'react-redux';
+import { selectCollectionUrl } from '../../Redux/Shop/shop.selectors';
 
-const Collection = ({match}) => {
-  
-  const collections = useContext(CollectionsContext)
-  console.log(collections[match.params.collectionId])
-  const collection = collections[match.params.collectionId]
+const Collection = (props) => {
+  console.log(props);
+  const {collection} = props
+  // const collections = useContext(CollectionsContext)
+  // console.log(collections[match.params.collectionId])
+  // const collection = collections[match. params.collectionId]
+  console.log(collection);
   const {title,items} = collection
 
   return (
@@ -24,8 +28,13 @@ const Collection = ({match}) => {
   )
 }
 
-// const mapStateToProps = (state,ownProps) => ({
-//   collection:selectCollectionUrl(ownProps.match.params.collection)(staate)
-// })
+const mapStateToProps = (state,ownProps) => {
+  console.log(ownProps);
+  console.log(state);
+  console.log(selectCollectionUrl(ownProps.match.params.collectionId)(state));
+  return ({
+    collection:selectCollectionUrl(ownProps.match.params.collectionId)(state)
+  })
+}
 
-export default (Collection)
+export default  connect(mapStateToProps)(Collection)

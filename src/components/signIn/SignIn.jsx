@@ -24,10 +24,8 @@ const SignIn = ()=>{
 
     const { email, password } = details;
 
-      useEffect((email,password) => {
-        return () => {
-          setDetails({email,password})
-        };
+      useEffect(() => {
+        setDetails({email,password})
       }, [details])
 
 
