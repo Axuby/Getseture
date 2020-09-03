@@ -1,5 +1,5 @@
 import { cartActionTypes } from "./cart.types";
-import { addItemToCart, removeItemFromCart, reduceItemFromCart } from "./cart.utils";
+import { addItemToCart, removeItemFromCart } from "./cart.utils";
 import { reduceItem } from "./cart.actions";
 const INITIAL_STATE = {
     hidden:true,
@@ -14,7 +14,6 @@ switch (action.type) {
             hidden:!state.hidden
         }
         case cartActionTypes.ADD_ITEM:
-            debugger
             return {
                 ...state,
                 cartItems:addItemToCart(state.cartItems,action.payload)

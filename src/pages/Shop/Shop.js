@@ -7,11 +7,12 @@ import { convertCollectionSnapshotToMap } from '../../firebase/Firebase.utils';
 
 class  Shop extends React.Component {
     unsubscribeFromSnapshot = null
+
     componentDidMount(){
         const collectionRef = firestore.collection('collectionDb')
-        collectionRef.onSnapshot( snapShot => {
+        collectionRef.onSnapshot(async  snapShot => {
             console.log(snapShot)
-            convertCollectionSnapshotToMap(snapShot)
+           await convertCollectionSnapshotToMap(snapShot)
         })
     }
       render(){

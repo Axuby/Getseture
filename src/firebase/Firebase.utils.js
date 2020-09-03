@@ -42,7 +42,7 @@ export const createUserProfileDocument = async(userAuth,additionalData)=> {
     return userRef
 }
 
-
+//transform data to get what we need, an object
 export const convertCollectionSnapshotToMap = (collections)=>{
     const transformedCollection = collections.docs.map(doc =>{
         const {title,items} = doc.data()
@@ -53,6 +53,12 @@ export const convertCollectionSnapshotToMap = (collections)=>{
             routeName:encodeURI(title.toLowerCase())
         }
     })
+console.log(transformedCollection)
+   return transformedCollection.reduce((accumulator,collection)=> {
+       accumulator[collection.title.toLowerCase()] = collection
+       return accumulator
+   },{})
+
 }
 export const addCollectionAndDocument = async(collectionKey,ObjectToAdd)=>{
                         console.log(collectionKey)
