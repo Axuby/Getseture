@@ -32,7 +32,7 @@ export const selectCollectionShop = createSelector(
     collections => 
          collections[collectionUrlParam]
     )
-    export const selectCollectionPreview = createSelector(
+    export const selectCollectionsPreview = createSelector(
         [selectCollectionShop],
         collections => Object.keys(collections).map(key => collections[key])
     )

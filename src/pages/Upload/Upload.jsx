@@ -2,6 +2,7 @@ import React,{useState,useContext} from 'react'
 import FormInput from '../../components/formInput/FormInput'
 import { auth } from 'firebase'
 import CustomButton from '../../components/custom-button/CustomButton'
+import { addCollectionAndDocument } from '../../firebase/Firebase.utils'
 
 const Upload = () => {
     const [uploadDetails, setUploadDetails] = useState({
@@ -14,11 +15,12 @@ const Upload = () => {
 
     const handleSubmit = async (e) =>{
             e.preventDefault()
-        const  {name,item,file} = uploadDetails
+       // const  {name,item,file} = uploadDetails
 
             try {
                 
-
+        addCollectionAndDocument('collectionDB',uploadDetails)
+        
 
             } catch (error) {
                 console.log(error);

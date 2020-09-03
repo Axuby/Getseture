@@ -21,24 +21,31 @@ const Header = ({currentUser,hidden}) => {
 
   return (
     <div className="header">
-      <Link className="logo-container" to="/"> 
-         <Logo className="logo"/>
-       </Link>
-              <div className="options">
-                <Link className="option" to="/shop">Shop</Link>
-                <Link className="option" to="/contact">Contact</Link>
+              <Link className="logo-container" to="/"> 
+                <Logo className="logo"/>
+              </Link>
+                  <div className="options">
+                    <Link className="option" to="/shop">Shop</Link>
+                    <Link className="option" to="/contact">Contact</Link>
 
-                  {
-                    currentUser
-                    ? <div className="option" onClick={()=> auth.signOut()}>
-                        Sign Out
+                      {
+                        currentUser
+                        ? <div className="option" onClick={()=> auth.signOut()}>
+                            Sign Out
+                        </div>
+                        : <Link className="option" to="/signIn">Sign In</Link>
+                      }
+                      {
+                        currentUser === 'Farmer'?
+                        <Link className='upload-option' to='/upload'> Upload a new Product</Link>
+                        : null
+                      }
+                      <CartIcon />
                     </div>
-                    : <Link className="option" to="/signIn">Sign In</Link>
-                  }
-                  <CartIcon />
-                </div>
                 {
-                    hidden ? null :(<CartDropdown/>)
+                    hidden
+                     ? null :
+                     (<CartDropdown/>)
                 }
               
     </div>

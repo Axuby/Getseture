@@ -64,10 +64,14 @@ const SignIn = ()=>{
           <FormInput
             name='password'
             type='password'
-            value={details.password}
+            value={password}
             handleChange={handleChange}
             label='password'
             required
+          />
+
+          <FormInput
+          type=""
           />
           <div className='buttons'>
             <CustomButton type='submit'> Sign in </CustomButton>

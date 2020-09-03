@@ -12,7 +12,8 @@ import { selectCurrentUser } from './Redux/User/user.selectors';
 import Checkout from './pages/Checkout/Checkout';
 import { createStructuredSelector } from 'reselect';
 import CurrentUserContext from './context/currentUser/CurrentUser.context';
-import {selectCollectionPreview} from './Redux/Shop/shop.selectors'
+import {selectCollectionsPreview} from './Redux/Shop/shop.selectors'
+import Upload from './pages/Upload/Upload';
 
 
 class App extends React.Component {
@@ -23,8 +24,6 @@ class App extends React.Component {
   //   }
   // }
   unsubscribeFromAuth = null;
-
-    //const {setCurrentUser,collectionsArray} = this.props
 
     componentDidMount(){
       //const {} = this.props
@@ -48,7 +47,7 @@ class App extends React.Component {
         }
         setCurrentUser(userAuth)
         //this.setState({currentUser:userAuth})//after logging out userAuth = null
-      addCollectionAndDocument("collectionDb",collectionArray.map(({title,items})=> ({title,items})))
+      addCollectionAndDocument("collectionDB",collectionArray.map(({title,items})=> ({title,items})))
         
 
       })
@@ -72,6 +71,7 @@ render(){
           //this.state.currentUser 
           ? <Redirect to="/"/> 
           : (<SignInSignUp/>) }/>
+          <Route exact path='/upload' component={Upload}/>
           <Route exact path='/checkout' component={Checkout} />
       </Switch>
     </div>
@@ -85,7 +85,7 @@ render(){
 
 const mapStateToProps = createStructuredSelector({
   currentUser:selectCurrentUser,
- collectionArray:selectCollectionPreview
+ collectionArray:selectCollectionsPreview
 })
 const mapDispatchToProps = (dispatch)=> ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))
